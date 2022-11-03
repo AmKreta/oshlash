@@ -32,7 +32,7 @@ const StyledButton=styled.button`
     }
 
     &:active{
-        transform:scale(.95);
+        transform:scale(.98);
     }
 
     &:focus{

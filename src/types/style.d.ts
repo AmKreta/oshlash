@@ -14,6 +14,6 @@ declare module "styled-components" {
       secondary: COLOR_SET;
       border: COLOR_SET;
     };
-    spacing:(x:number)=>number;
+    spacing: (x: number) => number;
   }
 }
