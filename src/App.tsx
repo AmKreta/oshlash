@@ -1,11 +1,9 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Button from './components/button/button.component';
+import Home from './view/home/home.view';
 
 function App() {
   return (
-   <Button title='amk'/>
+   <Home />
   );
 }
 
