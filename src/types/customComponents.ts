@@ -70,3 +70,18 @@ export interface TEXT_INPUT extends TEXT_INPUT_STYLE {
 export interface SHARE_DROPDOWN {
   openSelectAccountDropdown: Function;
 }
+export interface SELECT_DROPDOWN_MENU_STYLE { }
+
+export interface SELECT_DROPDOWN_MENU extends SELECT_DROPDOWN_MENU_STYLE {
+  header?: JSX.Element;
+  commonClickHandler?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  valueExtractor?: (props: any) => string;
+  options: {
+    renderer?:JSX.Element;
+    startIcon?: IconType;
+    value: string;
+    endIcon?: IconType;
+    onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  }[];
+  footer?: JSX.Element;
+}
