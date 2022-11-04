@@ -22,7 +22,7 @@ const Home: React.FC = () => {
         <Button title="Share" endIcon={MdShare} onClick={clickHandler}/>
         {
             activeDropdown==='SHARE_DROPDOWN'
-                ?<ShareDropdown />
+                ?<ShareDropdown openSelectAccountDropdown={openSelectAccountDropdown}/>
                 :activeDropdown==='SELECT_ACCOUNT_DROPDOWN'
                     ?<SelectAccountDropdown />
                     :null

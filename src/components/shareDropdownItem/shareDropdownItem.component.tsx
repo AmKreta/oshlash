@@ -1,16 +1,11 @@
 import React from "react";
+import { SHARE_DROPDOWN_ITEM } from "../../types/customComponents";
 import DropdownItemContainer from "./shareDropdownItem.styles";
 
-interface SHARE_ITEM_DROPDOWN_ITEM {
-  title: string;
-  subtitle: string;
-  image?: string;
-  rightComponent?: JSX.Element;
-  imageStyle?: React.CSSProperties;
-}
 
-const ShareDropdownItemContainer: React.FC<SHARE_ITEM_DROPDOWN_ITEM> = (
-  props: SHARE_ITEM_DROPDOWN_ITEM
+
+const ShareDropdownItemContainer: React.FC<SHARE_DROPDOWN_ITEM> = (
+  props: SHARE_DROPDOWN_ITEM
 ) => {
   return (
     <DropdownItemContainer>
