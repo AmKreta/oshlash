@@ -15,5 +15,6 @@ declare module "styled-components" {
       border: COLOR_SET;
     };
     spacing: (x: number) => number;
+    boxShadow:string[]
   }
 }

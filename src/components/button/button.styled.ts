@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const StyledButton=styled.button`
     padding: ${(props)=>`${props.theme.spacing(1.5)}px ${props.theme.spacing(2.5)}px`};
-    font-size: 1.2em;
+    font-size: 14px;
     font-weight:500;
     background-color:${props=>props.theme.palette.text.dark};
     color:${props=>props.theme.palette.paper.light};
@@ -11,11 +11,17 @@ const StyledButton=styled.button`
     display:flex;
     align-items:center;
     transition:'.25s ease-in-out';
+    height:36px;
+    width:95px;
 
     &>.buttonIcon{
         display:flex;
         align-items:center;
         justify-content:center;
+        &>svg{
+            height:14px;
+            width:14px;
+        }
     }
 
     &>.startIcon{

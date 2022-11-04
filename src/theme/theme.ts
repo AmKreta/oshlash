@@ -9,7 +9,7 @@ const theme: THEME = {
     },
     primary: {
       light: "",
-      main: "",
+      main: "#6366F1",
       dark: "",
     },
     secondary: {
@@ -18,17 +18,21 @@ const theme: THEME = {
       dark: "",
     },
     text: {
-      light: "#D3D3D3",
-      main: "#212121",
-      dark: "#121212",
+      light: "#6B7280",
+      main: "#111827",
+      dark: "#111827",
     },
     border: {
-      light: "",
+      light: '#E5E7EB',
       main: "",
       dark: "",
     },
   },
   spacing: (x = 1) => 8 * x,
+  boxShadow:[
+    '0px 4px 6px -2px #0000000D, 0px 10px 15px -3px #0000001A',
+    '0px 1px 2px 0px #0000000F, 0px 1px 3px 0px #0000001A'
+  ]
 };
 
 export default theme;
