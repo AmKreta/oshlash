@@ -70,18 +70,36 @@ export interface TEXT_INPUT extends TEXT_INPUT_STYLE {
 export interface SHARE_DROPDOWN {
   openSelectAccountDropdown: Function;
 }
-export interface SELECT_DROPDOWN_MENU_STYLE { }
+export interface SELECT_DROPDOWN_MENU_STYLE {}
 
-export interface SELECT_DROPDOWN_MENU extends SELECT_DROPDOWN_MENU_STYLE {
+export interface SELECT_DROPDOWN_MENU_OPTION<T> {
+  renderer?: JSX.Element;
+  startIcon?: IconType;
+  value: T;
+  endIcon?: IconType;
+  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
+}
+export interface SELECT_DROPDOWN_MENU<T> extends SELECT_DROPDOWN_MENU_STYLE {
   header?: JSX.Element;
-  commonClickHandler?: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  valueExtractor?: (props: any) => string;
-  options: {
-    renderer?:JSX.Element;
-    startIcon?: IconType;
-    value: string;
-    endIcon?: IconType;
-    onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  }[];
+  commonClickHandler?: (clickedIndex: number) => void;
+  valueExtractor?: (props: T) => string;
+  options: SELECT_DROPDOWN_MENU_OPTION<T>[];
   footer?: JSX.Element;
+  placeholder?: string;
+  value: string;
+}
+
+export enum PERMISSIONS {
+  FULL_ACESS = "FULL_ACCESS",
+  CAN_EDIT = "CAN_EDIT",
+  CAN_VIEW = "CAN_VIEW",
+  NO_ACCESS = "NO_ACCESS",
+}
+export interface PERMISSION_DROPDOWN_OPTION {
+  title: PERMISSIONS;
+  displayVal: string;
+}
+
+export interface PERMISSION_DROPDOWN {
+  onPermissionChange: (newPermission: PERMISSIONS) => any;
 }

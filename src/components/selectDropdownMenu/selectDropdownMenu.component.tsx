@@ -1,34 +1,62 @@
-import React from "react";
+import React, { useState } from "react";
 import { SELECT_DROPDOWN_MENU } from "../../types/customComponents";
 import SelectDropdownMenuContainer from "./selectDropdownMenu.styles";
+import { MdKeyboardArrowDown } from "react-icons/md";
+import { IconContext } from "react-icons";
 
-const SelectDropdownMenu: React.FC<SELECT_DROPDOWN_MENU> = (
-  props: SELECT_DROPDOWN_MENU
+const SelectDropdownMenu: React.FC<SELECT_DROPDOWN_MENU<any>> = (
+  props: SELECT_DROPDOWN_MENU<any>
 ) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const toggleDropdown = () => setIsExpanded((prevState) => !prevState);
+
+  const clickHandler=function(e:React.MouseEvent<HTMLDivElement>){
+    const el=e.currentTarget as HTMLDivElement;
+    const clickedIndex=parseInt(el.dataset['index']!);
+    props.commonClickHandler?.(clickedIndex);
+    toggleDropdown();
+  }
+
   return (
     <SelectDropdownMenuContainer>
-      {props.header}
-      <div className="menuOptions">
-        {props.options?.map((item, index) => {
-          if (item.renderer) return item.renderer;
-          return (
-            <div data-index={index}>
-              {item.startIcon ? (
-                <span>
-                  <item.startIcon />
-                </span>
-              ) : null}
-              <span>{props.valueExtractor?.(item.value) || item.value}</span>
-              {item.endIcon ? (
-                <span>
-                  <item.endIcon />
-                </span>
-              ) : null}
-            </div>
-          );
-        })}
+      <div className="valueContainer" onClick={toggleDropdown}>
+        <span>{props.value}</span>
+        <IconContext.Provider value={{ className: "downArrowIcon" }}>
+          <MdKeyboardArrowDown />
+        </IconContext.Provider>
       </div>
-      {props.footer}
+      {isExpanded ? (
+        <>
+          <div className="dropdown">
+            {props.header}
+            <div className="menuOptions">
+              {props.options?.map((item, index) => {
+                if (item.renderer) return item.renderer;
+                return (
+                  <div data-index={index} className="menuOption" onClick={item.onClick || clickHandler}>
+                    {item.startIcon ? (
+                      <span>
+                        <item.startIcon />
+                      </span>
+                    ) : null}
+                    <span className="val">
+                      {props.valueExtractor?.(item.value) || item.value}
+                    </span>
+                    {item.endIcon ? (
+                      <span>
+                        <item.endIcon />
+                      </span>
+                    ) : null}
+                  </div>
+                );
+              })}
+            </div>
+            {props.footer}
+          </div>
+          <div className="overlay" onClick={toggleDropdown} />
+        </>
+      ) : null}
     </SelectDropdownMenuContainer>
   );
 };
