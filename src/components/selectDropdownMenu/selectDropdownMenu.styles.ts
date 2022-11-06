@@ -28,65 +28,64 @@ const SelectDropdownMenuContainer = styled.div`
       cursor: pointer;
     }
   }
+`;
 
-  & > .dropdown {
-    position: absolute;
-    top: calc(100% + 2px);
-    left: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 8px;
-    gap: 4px;
-    position: absolute;
-    width: 172px;
-    height: 172px;
-    background: #ffffff;
-    border: 1px solid #f3f4f6;
-    box-shadow: ${(props) => props.theme.boxShadow[3]};
-    border-radius: 4px;
-    z-index: 2;
+export const Dropdown = styled.div`
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 8px;
+  gap: 4px;
+  position: absolute;
+  width: 172px;
+  height: 172px;
+  background: #ffffff;
+  border: 1px solid #f3f4f6;
+  box-shadow: ${(props) => props.theme.boxShadow[3]};
+  border-radius: 4px;
+  z-index: 4;
 
-    & > .menuOptions {
-      & > .menuOption {
-        display: flex;
-        align-items: flex-start;
-        padding: 8px;
-        width: 156px;
-        height: 36px;
-        background: #ffffff;
-        border-radius: 4px;
-        transition: 0.25s ease-in-out;
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 20px;
-        display: flex;
-        align-items: center;
-        color: #111827;
+  & > .menuOptions {
+    & > .menuOption {
+      display: flex;
+      align-items: flex-start;
+      padding: 8px;
+      width: 156px;
+      height: 36px;
+      background: #ffffff;
+      border-radius: 4px;
+      transition: 0.25s ease-in-out;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 20px;
+      display: flex;
+      align-items: center;
+      color: #111827;
 
-        & > .val {
-          width: 100%;
-          flex-grow: 1;
-          text-align: left;
-          display: inline-block;
-        }
+      & > .val {
+        width: 100%;
+        flex-grow: 1;
+        text-align: left;
+        display: inline-block;
+      }
 
-        &:hover {
-          background: #f3f4f6;
-          cursor: pointer;
-        }
+      &:hover {
+        background: #f3f4f6;
+        cursor: pointer;
       }
     }
   }
+`;
 
-  & > .overlay {
-    position: fixed;
+export const Overlay=styled.div`
+  position: fixed;
     top: 0;
     left: 0;
     height: 100vh;
     width: 100vw;
     position: fixed;
-  }
+    z-index: 3;
 `;
 
 export default SelectDropdownMenuContainer;
