@@ -45,7 +45,7 @@ const ShareDropdown: React.FC<SHARE_DROPDOWN> = (props: SHARE_DROPDOWN) => {
             }`}
             subtitle={(account as GROUP).members?`${(account as GROUP).members} workspace members`:null}
             rightComponent={
-              <PermissionDropdown onPermissionChange={(newPermission) => {}} />
+              <PermissionDropdown onPermissionChange={(newPermission) => {}} initial_permission={(account as any).permission}/>
             }
             image={account.profilePicture}
           />

@@ -7,7 +7,7 @@ const ShareDropdownItemContainer: React.FC<SHARE_DROPDOWN_ITEM> = (
 ) => {
   return (
     <DropdownItemContainer>
-      {props.image ? <img src={props.image} style={props.imageStyle} /> : null}
+      {props.image ? <img src={props.image} style={props.imageStyle} alt='if not available'/> : null}
       <div className="writtenContent">
         <div className="title">{props.title}</div>
         {props.subtitle ? (

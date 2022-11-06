@@ -4,7 +4,11 @@ import StyledInput from "./textInput.styles";
 
 const TextInput: React.FC<TEXT_INPUT> = (props: TEXT_INPUT) => {
   return (
-    <StyledInput transparent={props.transparent} noBorder={props.noBorder} style={props.style}>
+    <StyledInput
+      transparent={props.transparent}
+      noBorder={props.noBorder}
+      style={props.style}
+    >
       {props.startComponent}
       <div className="inputContainer">
         {props.startIcon ? (
@@ -12,7 +16,12 @@ const TextInput: React.FC<TEXT_INPUT> = (props: TEXT_INPUT) => {
             <props.startIcon />
           </span>
         ) : null}
-        <input onFocus={props.onFocus} onChange={props.onChange} onBlur={props.onBlur}/>
+        <input
+          onFocus={props.onFocus}
+          onChange={props.onChange}
+          onBlur={props.onBlur}
+          value={props.value}
+        />
         {props.endIcon ? (
           <span>
             <props.endIcon />

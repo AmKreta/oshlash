@@ -45,7 +45,7 @@ const PermissionDropdown: React.FC<PERMISSION_DROPDOWN> = (props:PERMISSION_DROP
     return props.displayVal;
   }, []);
 
-  const [val,setVal]=useState('');
+  const [val,setVal]=useState(props.initial_permission||'');
 
   const onChange=(clickedIndex:number)=>{
     const clickedItem=dropdownOptions[clickedIndex].value;

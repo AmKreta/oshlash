@@ -6,7 +6,7 @@ import SelectableAccountContainer from './selectableAccountInfo.styles';
 const SelectableAccount:React.FC<SELECTABLE_ACCOUNT_INFO>=(props:SELECTABLE_ACCOUNT_INFO)=>{
     return (
         <SelectableAccountContainer onClick={props.onClick}{...props.data_attributes} selected={props.selected}>
-           <img src={props.account.profilePicture} />
+           <img src={props.account.profilePicture} alt='if not available'/>
            <span>{props.account.first_name} {(props.account as PERSON).last_name || ''}</span>
         </SelectableAccountContainer>
     );

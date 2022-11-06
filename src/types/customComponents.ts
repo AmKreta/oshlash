@@ -105,6 +105,7 @@ export interface PERMISSION_DROPDOWN_OPTION {
 
 export interface PERMISSION_DROPDOWN {
   onPermissionChange: (newPermission: PERMISSIONS) => any;
+  initial_permission?:PERMISSIONS
 }
 
 export interface SELECT_ACCOUNT{

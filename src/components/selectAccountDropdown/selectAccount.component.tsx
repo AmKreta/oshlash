@@ -6,7 +6,7 @@ import { BiHelpCircle } from "react-icons/bi";
 import PermissionDropdown from "../permissionDropsown/permissionDropdoen.component";
 import TextInput from "../textInput/textInput.component";
 import { useSelector } from "react-redux";
-import personAndGroupSelecttor from "../../selector/personAndGroupSelecttor";
+import usePersonAndGroupSelector from "../../selector/personAndGroupSelecttor";
 import SelectAccount from "../selectAccountContainer/selectAccountContainer.component";
 import { ACCOUNT, PERSON } from "redux-store";
 import Pill from "../pill/pill.component";
@@ -22,7 +22,10 @@ import selectedAccountSelector from "../../selector/selectedAccountSelector";
 const SelectAccountDropdown: React.FC<SELECT_ACCOUNT_DROPDOWN> = (
   props: SELECT_ACCOUNT_DROPDOWN
 ) => {
-  const { person, group } = useSelector(personAndGroupSelecttor);
+
+  const [search,setSearch]=useState('');
+
+  const { person, group } =usePersonAndGroupSelector(search);
 
   const selectedAccountInRedux = useSelector(selectedAccountSelector);
 
@@ -98,6 +101,8 @@ const SelectAccountDropdown: React.FC<SELECT_ACCOUNT_DROPDOWN> = (
             transparent
             noBorder
             style={{ minWidth: "200px", margin: 0 }}
+            value={search}
+            onChange={e=>setSearch(e.target.value)}
           />
         </div>
         <PermissionDropdown onPermissionChange={onPermissionChange} />
