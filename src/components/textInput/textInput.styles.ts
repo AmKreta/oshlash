@@ -19,7 +19,6 @@ const StyledInput = styled.div<TEXT_INPUT_STYLE>`
       ? css`
           background: transparent;
           box-shadow: none;
-          border-bottom: 1px solid ${props.theme.palette.border.main};
           border-radius: 0;
         `
       : null}
@@ -48,10 +47,6 @@ const StyledInput = styled.div<TEXT_INPUT_STYLE>`
             `
           : null}
     }
-  }
-
-  &:active {
-    border-color: ${(props) => props.theme.palette.primary.main};
   }
 `;
 

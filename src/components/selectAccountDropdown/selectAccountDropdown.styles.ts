@@ -11,22 +11,42 @@ const StyledDiv = styled.div`
   box-shadow: ${(props) => props.theme.boxShadow[0]};
   display: flex;
   flex-flow: column nowrap;
-  position:relative;
+  position: relative;
 
   & > .main {
     flex-grow: 1;
-    overflow-y:scroll;
+    overflow-y: scroll;
   }
 
   & > .header {
     display: flex;
     align-items: center;
     padding: 12px 16px;
-    gap: 10px;
     height: 58px;
     background: #f3f4f6;
     border-bottom: 1px solid #e5e7eb;
     border-radius: 8px 8px 0px 0px;
+
+    & > .pills-input {
+      display:flex;
+      align-items:center;
+      width:65%;
+      flex-wrap:nowrap;
+      overflow-x:scroll;
+      position:'relative';
+
+      &::after{
+        
+      }
+      border-bottom: ${(props) => `1px solid ${props.theme.palette.border.main}`};
+
+      & > .pillsContainer {
+        display: flex;
+        align-items: center;
+        flex-wrap: nowrap;
+        flex-direction: row;
+      }
+    }
   }
 
   & > .footer {
@@ -43,7 +63,7 @@ const StyledDiv = styled.div`
     & > .icon {
       color: ${(props) => props.theme.palette.text.light};
     }
-    
+
     & > span {
       font-style: normal;
       font-weight: 400;

@@ -8,12 +8,16 @@ import TextInput from "../textInput/textInput.component";
 import { useSelector } from "react-redux";
 import personAndGroupSelecttor from "../../selector/personAndGroupSelecttor";
 import SelectAccount from "../selectAccountContainer/selectAccountContainer.component";
-import { ACCOUNT } from "redux-store";
+import { ACCOUNT, PERSON } from "redux-store";
+import Pill from "../pill/pill.component";
+import { IoClose } from "react-icons/io5";
 
 const SelectAccountDropdown: React.FC = () => {
   const { person, group } = useSelector(personAndGroupSelecttor);
 
-  const [selectedAccount, setSelectedAccount] = useState(new Map<string,ACCOUNT>());
+  const [selectedAccount, setSelectedAccount] = useState(
+    new Map<string, ACCOUNT>()
+  );
 
   const onPermissionChange = (newPermission: string) => {
     console.log(newPermission);
@@ -27,10 +31,39 @@ const SelectAccountDropdown: React.FC = () => {
     });
   };
 
+  const onPillClick=(e: React.MouseEvent<HTMLDivElement, MouseEvent>)=>{
+    const clickedPillId=e.currentTarget.dataset['id']!;
+    setSelectedAccount((prevState) => {
+       prevState.delete(clickedPillId);
+      return new Map(prevState);
+    });
+  }
+
   return (
     <StyledDiv>
       <div className="header">
-        <TextInput transparent noBorder />
+       <div className="pills-input">
+       <div className="pillsContainer">
+          {(function () {
+            const res: JSX.Element[] = [];
+            selectedAccount.forEach((account) =>
+              res.push(
+                <Pill
+                  title={
+                    account.first_name + " " + (account as PERSON).last_name ||
+                    ""
+                  }
+                  data_attributes={{ "data-id": account.id }}
+                  endIcon={IoClose}
+                  onClick={onPillClick}
+                />
+              )
+            );
+            return res;
+          })()}
+        </div>
+        <TextInput transparent noBorder style={{minWidth:'200px', margin:0}}/>
+       </div>
         <PermissionDropdown onPermissionChange={onPermissionChange} />
         <Button
           title="invite"

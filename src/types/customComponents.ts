@@ -24,10 +24,11 @@ export interface PILL {
   startIcon?: IconType;
   title: string;
   endIcon?: IconType;
-  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
   style?: React.CSSProperties;
   disabled?: boolean;
   iconSize?: number;
+  data_attributes?:{[key:`data-${string}`]:string|number};
 }
 
 export interface SWITCH_STYLES {

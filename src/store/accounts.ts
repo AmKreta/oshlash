@@ -5,11 +5,13 @@ import account from "../db/db.accounts.json";
 interface INITIAL_STATE {
   loading: boolean;
   accounts: ACCOUNT[];
+  selected:ACCOUNT[];
 }
 
 const initialState: INITIAL_STATE = {
   loading: false,
   accounts: [],
+  selected:[]
 };
 
 export const loadAccounts = createAsyncThunk("accounts/load", async () => {
@@ -20,7 +22,11 @@ export const loadAccounts = createAsyncThunk("accounts/load", async () => {
 const accounts = createSlice({
   name: "accounts",
   initialState,
-  reducers: {},
+  reducers: {
+    setSelectedAccount(state,action){
+      state.selected=action.payload;
+    }
+  },
   extraReducers(builder) {
     builder.addCase(loadAccounts.fulfilled, (state, action) => {
       state.loading=false;
