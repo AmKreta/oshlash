@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { TEXT_INPUT_STYLE } from "../../types/customComponents";
 
 const StyledInput = styled.div<TEXT_INPUT_STYLE>`
@@ -10,10 +10,19 @@ const StyledInput = styled.div<TEXT_INPUT_STYLE>`
   height: 38px;
   width: 488px;
   margin: ${(props) => props.theme.spacing(2)}px auto;
-  background: #ffffff;
+  background: "#ffffff";
   box-shadow: ${(props) => props.theme.boxShadow[2]};
   border-radius: 6px;
   overflow: hidden;
+  ${(props) =>
+    props.transparent
+      ? css`
+          background: transparent;
+          box-shadow: none;
+          border-bottom: 1px solid ${props.theme.palette.border.main};
+          border-radius: 0;
+        `
+      : null}
 
   & > .inputContainer {
     flex-grow: 1;
@@ -30,6 +39,14 @@ const StyledInput = styled.div<TEXT_INPUT_STYLE>`
       font-size: 16px;
       line-height: 24px;
       padding: 0 ${(props) => props.theme.spacing(2)}px;
+      background: "#ffffff";
+      ${(props) =>
+        props.transparent
+          ? css`
+              background: transparent;
+              box-shadow: none;
+            `
+          : null}
     }
   }
 

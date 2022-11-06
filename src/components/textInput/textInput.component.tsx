@@ -4,7 +4,7 @@ import StyledInput from "./textInput.styles";
 
 const TextInput: React.FC<TEXT_INPUT> = (props: TEXT_INPUT) => {
   return (
-    <StyledInput>
+    <StyledInput transparent={props.transparent} noBorder={props.noBorder}>
       {props.startComponent}
       <div className="inputContainer">
         {props.startIcon ? (

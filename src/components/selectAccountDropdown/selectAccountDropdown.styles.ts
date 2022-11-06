@@ -3,16 +3,19 @@ import styled from "styled-components";
 const StyledDiv = styled.div`
   margin-top: 8px;
   min-height: 252px;
+  max-height: 500px;
+  overflow-y: scroll;
   width: 512px;
   border: ${(props) => `1px solid ${props.theme.palette.border.light}`};
-  overflow: hidden;
   border-radius: ${(props) => props.theme.spacing(1)}px;
   box-shadow: ${(props) => props.theme.boxShadow[0]};
   display: flex;
   flex-flow: column nowrap;
+  position:relative;
 
   & > .main {
     flex-grow: 1;
+    overflow-y:scroll;
   }
 
   & > .header {

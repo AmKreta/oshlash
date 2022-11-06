@@ -1,15 +1,19 @@
-declare module 'redux-store' {
-    
-    interface PERSON {
-        name: string,
-        profilePicture: string,
-        email: string,
-        id: string,
-    }
+declare module "redux-store" {
+  interface PERSON {
+    id: string;
+    first_name: string;
+    last_name: string;
+    email: string;
+    gender: "Male" | "Female";
+    profilePicture: string;
+  }
 
-    interface GROUP extends Omit<PERSON, 'email'> {
-        members: { [id: string]: PERSON };
-    }
+  interface GROUP {
+    id: string;
+    first_name: string;
+    profilePicture: string;
+    members: number;
+  }
 
-    export type ACCOUNT = PERSON | GROUP;
+  export type ACCOUNT = PERSON | GROUP;
 }

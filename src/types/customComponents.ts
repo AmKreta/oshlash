@@ -1,5 +1,6 @@
 import React from "react";
 import { IconType } from "react-icons";
+import { ACCOUNT } from "redux-store";
 
 export interface BUTTON_STYLE {
   lite?: boolean;
@@ -78,6 +79,7 @@ export interface SELECT_DROPDOWN_MENU_OPTION<T> {
   value: T;
   endIcon?: IconType;
   onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
+  style?:React.CSSProperties;
 }
 export interface SELECT_DROPDOWN_MENU<T> extends SELECT_DROPDOWN_MENU_STYLE {
   header?: JSX.Element;
@@ -103,3 +105,24 @@ export interface PERMISSION_DROPDOWN_OPTION {
 export interface PERMISSION_DROPDOWN {
   onPermissionChange: (newPermission: PERMISSIONS) => any;
 }
+
+export interface SELECT_ACCOUNT{
+  heading:string;
+  accountsList:ACCOUNT[];
+  onAccountClick:(clickedAccount:ACCOUNT)=>any;
+  selectedAccounts?:Map<string,ACCOUNT>
+}
+
+export interface SELECTABLE_ACCOUNT_INFO_STYLES{
+  selected?:boolean;
+}
+export interface SELECTABLE_ACCOUNT_INFO extends SELECTABLE_ACCOUNT_INFO_STYLES{
+  account:ACCOUNT;
+  onClick?:(e:React.MouseEvent<HTMLDivElement>)=>any;
+  data_attributes?:{[key:`data-${string}`]:string|number};
+}
+
+
+
+
+

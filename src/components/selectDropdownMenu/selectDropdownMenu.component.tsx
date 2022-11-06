@@ -21,7 +21,7 @@ const SelectDropdownMenu: React.FC<SELECT_DROPDOWN_MENU<any>> = (
   return (
     <SelectDropdownMenuContainer>
       <div className="valueContainer" onClick={toggleDropdown}>
-        <span>{props.value}</span>
+        <span>{props.value || props.placeholder}</span>
         <IconContext.Provider value={{ className: "downArrowIcon" }}>
           <MdKeyboardArrowDown />
         </IconContext.Provider>
@@ -40,7 +40,7 @@ const SelectDropdownMenu: React.FC<SELECT_DROPDOWN_MENU<any>> = (
                         <item.startIcon />
                       </span>
                     ) : null}
-                    <span className="val">
+                    <span className="val" style={item.style}>
                       {props.valueExtractor?.(item.value) || item.value}
                     </span>
                     {item.endIcon ? (

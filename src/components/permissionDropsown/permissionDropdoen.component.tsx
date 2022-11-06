@@ -36,6 +36,7 @@ const PermissionDropdown: React.FC<PERMISSION_DROPDOWN> = (props:PERMISSION_DROP
           title: PERMISSIONS.NO_ACCESS,
           displayVal: share_permission_display_val[PERMISSIONS.NO_ACCESS],
         },
+        style:{color:'red'}
       },
     ];
   }, []);
@@ -60,6 +61,7 @@ const PermissionDropdown: React.FC<PERMISSION_DROPDOWN> = (props:PERMISSION_DROP
       value={val}
       valueExtractor={valueExtractor}
       commonClickHandler={onChange}
+      placeholder='No Access'
     />
   );
 };

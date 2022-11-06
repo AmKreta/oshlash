@@ -6,11 +6,14 @@ const SelectDropdownMenuContainer = styled.div`
   & > .valueContainer {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     padding: 7px 9px 7px 11px;
     gap: 8px;
-    width: 92px;
+    width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     height: 30px;
     & > span {
       font-weight: 400;
