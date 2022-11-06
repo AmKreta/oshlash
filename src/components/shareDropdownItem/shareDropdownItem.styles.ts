@@ -13,6 +13,7 @@ const DropdownItemContainer = styled.div`
     height: 40px;
     width: 40px;
     margin-right:${props=>props.theme.spacing(2)}px;
+    border-radius:50%;
   }
 
   & > .writtenContent {
