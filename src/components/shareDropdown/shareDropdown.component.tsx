@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import { selectedAccountSelectorAsObj } from "../../selector/selectedAccountSelector";
 import PermissionDropdown from "../permissionDropsown/permissionDropdoen.component";
 import { ACCOUNT, GROUP, PERSON } from "redux-store";
+import oslashIcon from '../../assets/oslash.svg';
 
 const ShareDropdown: React.FC<SHARE_DROPDOWN> = (props: SHARE_DROPDOWN) => {
   const selectedAccounts = useSelector(selectedAccountSelectorAsObj);
@@ -32,6 +33,7 @@ const ShareDropdown: React.FC<SHARE_DROPDOWN> = (props: SHARE_DROPDOWN) => {
       <ShareDropdownItemContainer
         title="Everyone at workspace"
         subtitle="25 workspace members"
+        image={oslashIcon}
         rightComponent={
           <PermissionDropdown onPermissionChange={(newPermission) => {}} />
         }
