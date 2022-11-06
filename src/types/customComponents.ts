@@ -46,7 +46,7 @@ export interface SWITCH extends SWITCH_STYLES {
 
 export interface SHARE_DROPDOWN_ITEM {
   title: string;
-  subtitle: string;
+  subtitle: string | null;
   image?: string;
   rightComponent?: JSX.Element;
   imageStyle?: React.CSSProperties;

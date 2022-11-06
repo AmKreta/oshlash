@@ -8,7 +8,7 @@ import TextInput from "../textInput/textInput.component";
 import { useSelector } from "react-redux";
 import personAndGroupSelecttor from "../../selector/personAndGroupSelecttor";
 import SelectAccount from "../selectAccountContainer/selectAccountContainer.component";
-import { ACCOUNT, PERSON, SELECTED_ACCOUNTS } from "redux-store";
+import { ACCOUNT, PERSON } from "redux-store";
 import Pill from "../pill/pill.component";
 import { IoClose } from "react-icons/io5";
 import { useDispatch } from "react-redux";
@@ -23,7 +23,9 @@ const SelectAccountDropdown: React.FC<SELECT_ACCOUNT_DROPDOWN> = (
   props: SELECT_ACCOUNT_DROPDOWN
 ) => {
   const { person, group } = useSelector(personAndGroupSelecttor);
+
   const selectedAccountInRedux = useSelector(selectedAccountSelector);
+
   const [selectedAccount, setSelectedAccount] = useState(
     new Map<string, ACCOUNT>()
   );
@@ -63,9 +65,12 @@ const SelectAccountDropdown: React.FC<SELECT_ACCOUNT_DROPDOWN> = (
     props.openShareDropdown();
   };
 
-  useEffect(function () {
-    setSelectedAccount(selectedAccountInRedux);
-  }, [setSelectedAccount]);
+  useEffect(
+    function () {
+      setSelectedAccount(selectedAccountInRedux);
+    },
+    [setSelectedAccount]
+  );
 
   return (
     <StyledDiv>
@@ -77,11 +82,9 @@ const SelectAccountDropdown: React.FC<SELECT_ACCOUNT_DROPDOWN> = (
               selectedAccount.forEach((account) =>
                 res.push(
                   <Pill
-                    title={
-                      account.first_name +
-                        " " +
-                        (account as PERSON).last_name || ""
-                    }
+                    title={`${account.first_name} ${
+                      (account as PERSON).last_name || ""
+                    }`}
                     data_attributes={{ "data-id": account.id }}
                     endIcon={IoClose}
                     onClick={onPillClick}
