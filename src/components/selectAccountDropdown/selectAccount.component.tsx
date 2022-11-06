@@ -72,7 +72,7 @@ const SelectAccountDropdown: React.FC<SELECT_ACCOUNT_DROPDOWN> = (
     function () {
       setSelectedAccount(selectedAccountInRedux);
     },
-    [setSelectedAccount]
+    [setSelectedAccount, selectedAccountInRedux]
   );
 
   return (
