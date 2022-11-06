@@ -38,7 +38,13 @@ const accounts = createSlice({
           permission: action.payload.permission,
         };
       });
-      state.selected=res;
+      state.selected = res;
+    },
+    editPermissionOfId(
+      state,
+      action: { type: string; payload: { id: string; permission: PERMISSIONS } }
+    ) {
+      state.selected[action.payload.id].permission = action.payload.permission;
     },
   },
   extraReducers(builder) {
