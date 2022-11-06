@@ -31,7 +31,7 @@ const Home: React.FC = () => {
             activeDropdown==='SHARE_DROPDOWN'
                 ?<ShareDropdown openSelectAccountDropdown={openSelectAccountDropdown}/>
                 :activeDropdown==='SELECT_ACCOUNT_DROPDOWN'
-                    ?<SelectAccountDropdown />
+                    ?<SelectAccountDropdown openShareDropdown={openShareDropdown}/>
                     :null
         }
     </div>

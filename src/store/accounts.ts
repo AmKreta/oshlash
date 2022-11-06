@@ -23,7 +23,7 @@ const accounts = createSlice({
   name: "accounts",
   initialState,
   reducers: {
-    setSelectedAccount(state,action){
+    setSelectedAccount(state,action:{type:string,payload:ACCOUNT[]}){
       state.selected=action.payload;
     }
   },
@@ -43,4 +43,5 @@ const accounts = createSlice({
   },
 });
 
+export const {setSelectedAccount}=accounts.actions;
 export default accounts.reducer;

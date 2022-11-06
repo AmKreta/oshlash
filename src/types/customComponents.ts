@@ -123,6 +123,10 @@ export interface SELECTABLE_ACCOUNT_INFO extends SELECTABLE_ACCOUNT_INFO_STYLES{
   data_attributes?:{[key:`data-${string}`]:string|number};
 }
 
+export interface SELECT_ACCOUNT_DROPDOWN{
+  openShareDropdown:Function;
+}
+
 
 
 

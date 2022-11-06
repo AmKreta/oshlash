@@ -11,13 +11,20 @@ import SelectAccount from "../selectAccountContainer/selectAccountContainer.comp
 import { ACCOUNT, PERSON } from "redux-store";
 import Pill from "../pill/pill.component";
 import { IoClose } from "react-icons/io5";
+import { useDispatch } from "react-redux";
+import { setSelectedAccount as setSelectedAccountInRedux } from "../../store/accounts";
+import { SELECT_ACCOUNT_DROPDOWN } from "../../types/customComponents";
 
-const SelectAccountDropdown: React.FC = () => {
+const SelectAccountDropdown: React.FC<SELECT_ACCOUNT_DROPDOWN> = (
+  props: SELECT_ACCOUNT_DROPDOWN
+) => {
   const { person, group } = useSelector(personAndGroupSelecttor);
 
   const [selectedAccount, setSelectedAccount] = useState(
     new Map<string, ACCOUNT>()
   );
+
+  const dispatch = useDispatch();
 
   const onPermissionChange = (newPermission: string) => {
     console.log(newPermission);
@@ -31,39 +38,50 @@ const SelectAccountDropdown: React.FC = () => {
     });
   };
 
-  const onPillClick=(e: React.MouseEvent<HTMLDivElement, MouseEvent>)=>{
-    const clickedPillId=e.currentTarget.dataset['id']!;
+  const onPillClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const clickedPillId = e.currentTarget.dataset["id"]!;
     setSelectedAccount((prevState) => {
-       prevState.delete(clickedPillId);
+      prevState.delete(clickedPillId);
       return new Map(prevState);
     });
-  }
+  };
+
+  const onInvite = () => {
+    const res = Array.from(selectedAccount.values());
+    dispatch(setSelectedAccountInRedux(res));
+    props.openShareDropdown();
+  };
 
   return (
     <StyledDiv>
       <div className="header">
-       <div className="pills-input">
-       <div className="pillsContainer">
-          {(function () {
-            const res: JSX.Element[] = [];
-            selectedAccount.forEach((account) =>
-              res.push(
-                <Pill
-                  title={
-                    account.first_name + " " + (account as PERSON).last_name ||
-                    ""
-                  }
-                  data_attributes={{ "data-id": account.id }}
-                  endIcon={IoClose}
-                  onClick={onPillClick}
-                />
-              )
-            );
-            return res;
-          })()}
+        <div className="pills-input">
+          <div className="pillsContainer">
+            {(function () {
+              const res: JSX.Element[] = [];
+              selectedAccount.forEach((account) =>
+                res.push(
+                  <Pill
+                    title={
+                      account.first_name +
+                        " " +
+                        (account as PERSON).last_name || ""
+                    }
+                    data_attributes={{ "data-id": account.id }}
+                    endIcon={IoClose}
+                    onClick={onPillClick}
+                  />
+                )
+              );
+              return res;
+            })()}
+          </div>
+          <TextInput
+            transparent
+            noBorder
+            style={{ minWidth: "200px", margin: 0 }}
+          />
         </div>
-        <TextInput transparent noBorder style={{minWidth:'200px', margin:0}}/>
-       </div>
         <PermissionDropdown onPermissionChange={onPermissionChange} />
         <Button
           title="invite"
@@ -74,6 +92,7 @@ const SelectAccountDropdown: React.FC = () => {
             border: "1px solid #D1D5DB",
             width: "63px",
           }}
+          onClick={onInvite}
         />
       </div>
 
