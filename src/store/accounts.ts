@@ -1,17 +1,18 @@
-import { ACCOUNT } from "redux-store";
+import { ACCOUNT, SELECTED_ACCOUNTS } from "redux-store";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import account from "../db/db.accounts.json";
+import { PERMISSIONS } from "../types/customComponents";
 
 interface INITIAL_STATE {
   loading: boolean;
   accounts: ACCOUNT[];
-  selected:ACCOUNT[];
+  selected: { [id: string]: SELECTED_ACCOUNTS };
 }
 
 const initialState: INITIAL_STATE = {
   loading: false,
   accounts: [],
-  selected:[]
+  selected: {},
 };
 
 export const loadAccounts = createAsyncThunk("accounts/load", async () => {
@@ -23,14 +24,27 @@ const accounts = createSlice({
   name: "accounts",
   initialState,
   reducers: {
-    setSelectedAccount(state,action:{type:string,payload:ACCOUNT[]}){
-      state.selected=action.payload;
-    }
+    setSelectedAccount(
+      state,
+      action: {
+        type: string;
+        payload: { accounts: ACCOUNT[]; permission: PERMISSIONS };
+      }
+    ) {
+      const res: any = {};
+      action.payload.accounts.forEach((account) => {
+        res[account.id] = {
+          ...account,
+          permission: action.payload.permission,
+        };
+      });
+      state.selected=res;
+    },
   },
   extraReducers(builder) {
     builder.addCase(loadAccounts.fulfilled, (state, action) => {
-      state.loading=false;
-      state.accounts=action.payload;
+      state.loading = false;
+      state.accounts = action.payload;
     });
 
     builder.addCase(loadAccounts.pending, (state, action) => {
@@ -43,5 +57,5 @@ const accounts = createSlice({
   },
 });
 
-export const {setSelectedAccount}=accounts.actions;
+export const { setSelectedAccount } = accounts.actions;
 export default accounts.reducer;

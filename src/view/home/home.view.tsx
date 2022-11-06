@@ -22,7 +22,7 @@ const Home: React.FC = () => {
 
   useEffect(()=>{
     dispatch<any>(loadAccounts());
-  },[]);
+  },[dispatch]);
   
   return (
     <div>

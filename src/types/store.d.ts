@@ -16,4 +16,8 @@ declare module "redux-store" {
   }
 
   export type ACCOUNT = PERSON | GROUP;
+
+  export interface SELECTED_ACCOUNTS extends ACCOUNT{
+    permission:string;
+  }
 }

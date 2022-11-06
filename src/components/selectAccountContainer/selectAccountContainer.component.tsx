@@ -1,6 +1,6 @@
 import React from "react";
 import { SELECT_ACCOUNT } from "../../types/customComponents";
-import SelectableAccount from "../selectableAccountInfo/selectableAccountInfo.component";
+import SelectableAccount from "../selectableAccount/selectableAccountInfo.component";
 import SelectAccountContainer from "./selectAccountContainer.styles";
 
 const SelectAccount: React.FC<SELECT_ACCOUNT> = (props: SELECT_ACCOUNT) => {

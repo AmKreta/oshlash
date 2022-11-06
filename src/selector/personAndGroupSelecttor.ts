@@ -1,7 +1,7 @@
 import { RootState } from "../store/configureStore";
 import { PERSON, GROUP } from "redux-store";
 
-export default function (state: RootState) {
+function personAndGroupSelector(state: RootState) {
     const res: {
         person: PERSON[],
         group: GROUP[]
@@ -18,3 +18,5 @@ export default function (state: RootState) {
 
     return res;
 }
+
+export default personAndGroupSelector;

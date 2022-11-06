@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { IconContext } from "react-icons";
 import Button from "../button/button.component";
 import StyledDiv from "./selectAccountDropdown.styles";
@@ -8,26 +8,32 @@ import TextInput from "../textInput/textInput.component";
 import { useSelector } from "react-redux";
 import personAndGroupSelecttor from "../../selector/personAndGroupSelecttor";
 import SelectAccount from "../selectAccountContainer/selectAccountContainer.component";
-import { ACCOUNT, PERSON } from "redux-store";
+import { ACCOUNT, PERSON, SELECTED_ACCOUNTS } from "redux-store";
 import Pill from "../pill/pill.component";
 import { IoClose } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 import { setSelectedAccount as setSelectedAccountInRedux } from "../../store/accounts";
-import { SELECT_ACCOUNT_DROPDOWN } from "../../types/customComponents";
+import {
+  PERMISSIONS,
+  SELECT_ACCOUNT_DROPDOWN,
+} from "../../types/customComponents";
+import selectedAccountSelector from "../../selector/selectedAccountSelector";
 
 const SelectAccountDropdown: React.FC<SELECT_ACCOUNT_DROPDOWN> = (
   props: SELECT_ACCOUNT_DROPDOWN
 ) => {
   const { person, group } = useSelector(personAndGroupSelecttor);
-
+  const selectedAccountInRedux = useSelector(selectedAccountSelector);
   const [selectedAccount, setSelectedAccount] = useState(
     new Map<string, ACCOUNT>()
   );
 
+  const [permission, setPermission] = useState("No access");
+
   const dispatch = useDispatch();
 
   const onPermissionChange = (newPermission: string) => {
-    console.log(newPermission);
+    setPermission(newPermission);
   };
 
   const onAccountAdd = (newAccount: ACCOUNT) => {
@@ -48,9 +54,18 @@ const SelectAccountDropdown: React.FC<SELECT_ACCOUNT_DROPDOWN> = (
 
   const onInvite = () => {
     const res = Array.from(selectedAccount.values());
-    dispatch(setSelectedAccountInRedux(res));
+    dispatch(
+      setSelectedAccountInRedux({
+        accounts: res as ACCOUNT[],
+        permission: permission as PERMISSIONS,
+      })
+    );
     props.openShareDropdown();
   };
+
+  useEffect(function () {
+    setSelectedAccount(selectedAccountInRedux);
+  }, [setSelectedAccount]);
 
   return (
     <StyledDiv>
